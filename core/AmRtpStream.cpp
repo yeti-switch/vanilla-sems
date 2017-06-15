@@ -1123,11 +1123,6 @@ void AmRtpStream::recvRtcpPacket(AmRtpPacket* p)
      !relay_stream->l_sd)
     return;
 
-  if((size_t)recved_bytes > sizeof(buffer)) {
-    ERROR("recved huge RTCP packet (%d)",recved_bytes);
-    return;
-  }
-
   struct sockaddr_storage rtcp_raddr;
   memcpy(&rtcp_raddr,&relay_stream->r_saddr,sizeof(rtcp_raddr));
   am_set_port(&rtcp_raddr, relay_stream->r_rtcp_port);
